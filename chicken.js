@@ -14,29 +14,42 @@ const data={
 }
 
 function chickenIpsum(){
-    let words=chickenIpsumLoad();
+    let words=chickenIpsumLoad("chicken.ipsum");
     
     let value=5;
     let thing=types.SENTENCE;
     // process.argv[0] => nodejs install path
     // process.argv[1] => this file
-    if (regexInt.test(process.argv[2])){
-        value=parseInt(process.argv[2]);
-        switch (process.argv[3].toLowerCase()){
-            case "word":
-            case "words":
-                thing=types.WORD;
-                break;
-            case "paragraph":
-            case "paragraphs":
-                thing=types.PARAGRAPH;
-                break;
-            default:
+    switch (process.argv.length){
+        case 5:
+            if (fs.existsSync(process.argv[4])){
+                words=chickenIpsumLoad(process.argv[4]);
+            }
+            // don't break
+        case 4:
+            switch (process.argv[3].toLowerCase()){
+                case "word":
+                case "words":
+                    thing=types.WORD;
+                    break;
+                case "paragraph":
+                case "paragraphs":
+                    thing=types.PARAGRAPH;
+                    break;
+                default:
+                    // silently fail
+                    break;
+            }
+            // don't break
+        case 3:
+            if (regexInt.test(process.argv[2])){
+                value=parseInt(process.argv[2]);
+            } else {
                 // silently fail
-                break;
-        }
-    } else {
-        // silently fail
+            }
+            break;
+        default:
+            break;
     }
     
     let output="";
@@ -56,8 +69,8 @@ function chickenIpsum(){
     console.log(output);
 }
 
-function chickenIpsumLoad(){
-    return fs.readFileSync("chicken.ipsum").toString().split('\r\n');
+function chickenIpsumLoad(file){
+    return fs.readFileSync(file).toString().split('\r\n');
 }
 
 function chickenIpsumWord(words){
