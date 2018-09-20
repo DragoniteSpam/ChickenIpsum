@@ -76,7 +76,7 @@ function chickenIpsumWord(words){
     } while (attempt==data.previous);
     data.previous=attempt;
     
-    return attempt+" ";
+    return attempt.trim()+" ";
 }
 
 function chickenIpsumSentence(words){
