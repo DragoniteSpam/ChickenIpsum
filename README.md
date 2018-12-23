@@ -27,3 +27,9 @@ so the chicken words are loaded from the `chicken.ipsum` file (it's plain text, 
 if you want to make it load a different file (not that i know why you'd want to do that), pass it a third command line argument with the name of the plain text file containing the words/terms (each on its own line), like
 
 `node chicken.js 3500 paragraphs more\dog.ipsum`
+
+## 23 december 2018 update
+
+there's now a web version, which you can run as an html page instead of a node thing. (you could probably improve it further but i don't really care enough to do that.)
+
+to use it open web/chicken.html in any web browser that isn't totally ancient and it should work.
